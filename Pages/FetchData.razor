@@ -1,0 +1,46 @@
+﻿@page "/fetchdata"
+
+<PageTitle>Kvikmarken Skole Stationary List</PageTitle>
+
+@using CRUD_BlazorApp.Data
+
+
+<h1>Kvikmarken Stationary Details</h1>
+
+<p>This component demonstrates fetching stationary data from a Skole service</p>
+
+@if (slist == null)
+{
+    <p><em>Loading stationary details...</em></p>
+}
+else
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Stationary ID</th>
+                <th>Stationary Name</th>
+                <th>Student Name</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Stationary stationary in slist)
+            {
+                <tr>
+                    
+                    <td>@stationary.Id</td>
+                    <td>@stationary.Stationaryname</td>
+                    <td>@stationary.Studentname</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@code {
+   
+    List<Stationary> slist= new SQL().ReadStationary();
+    
+    
+}
